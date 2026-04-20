@@ -1,12 +1,1023 @@
-<section>
-  <h1>{{ section.settings.heading }}</h1>
-  <p>{{ section.settings.subheading }}</p>
+<section id="donaciones-registro-{{ section.id }}" class="donation-ui" data-section-id="{{ section.id }}">
+  <div class="donation-ui__bg"></div>
+
+  <div class="donation-ui__container">
+    <header class="donation-ui__hero">
+      <div class="donation-ui__hero-copy">
+        <span class="donation-ui__eyebrow">{{ section.settings.eyebrow }}</span>
+        <h1 class="donation-ui__title">{{ section.settings.heading }}</h1>
+        <p class="donation-ui__subtitle">{{ section.settings.subheading }}</p>
+      </div>
+
+      <div class="donation-ui__hero-card">
+        <div class="donation-ui__hero-badge">Panel conectado a Google Sheets</div>
+        <div class="donation-ui__hero-stats">
+          <div class="metric-card">
+            <span>Registros</span>
+            <strong data-total-registros>0</strong>
+          </div>
+          <div class="metric-card">
+            <span>Total</span>
+            <strong data-monto-total>$0</strong>
+          </div>
+          <div class="metric-card">
+            <span>Promedio</span>
+            <strong data-promedio-monto>$0</strong>
+          </div>
+          <div class="metric-card">
+            <span>Última hora</span>
+            <strong data-ultimo-hora>—</strong>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="donation-ui__grid">
+      <div class="glass-card donation-ui__form-wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Captura manual</p>
+            <h2>Nuevo registro</h2>
+            <p class="section-text">Guarda localmente, exporta CSV y envía automáticamente la información al Apps Script.</p>
+          </div>
+          <button type="button" class="theme-toggle-btn" data-theme-toggle>Modo oscuro</button>
+        </div>
+
+        <form class="donation-form" data-donation-form novalidate>
+          <div class="form-grid two">
+            <label class="field">
+              <span>Fecha</span>
+              <input type="date" data-fecha required>
+            </label>
+
+            <label class="field">
+              <span>Hora</span>
+              <select data-hora required></select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Nombre</span>
+            <input type="text" data-nombre maxlength="120" placeholder="Nombre completo" required>
+          </label>
+
+          <div class="form-grid two">
+            <label class="field">
+              <span>Teléfono</span>
+              <input type="tel" data-telefono maxlength="20" placeholder="6671234567" required>
+            </label>
+
+            <label class="field">
+              <span>Monto</span>
+              <input type="number" data-monto min="100" step="0.01" placeholder="Ej. 250 o 2000" required>
+            </label>
+          </div>
+
+          <div class="form-grid two">
+            <label class="field">
+              <span>Número de tarjeta</span>
+              <input type="text" data-tarjeta maxlength="16" inputmode="numeric" placeholder="16 dígitos" required>
+            </label>
+
+            <label class="field">
+              <span>Estatus</span>
+              <select data-estatus required>
+                <option value="">Selecciona</option>
+                <option>Transferido</option>
+                <option>Tarjeta aprobada</option>
+                <option>Efectivo</option>
+                <option>Pendiente</option>
+                <option>Rechazada</option>
+                <option>Cancelada</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-grid two">
+            <label class="field">
+              <span>Método de pago</span>
+              <select data-metodo-pago required>
+                <option value="">Selecciona</option>
+                <option>Transferencia</option>
+                <option>Tarjeta</option>
+                <option>Efectivo</option>
+                <option>Depósito</option>
+                <option>Otro</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Capturado por</span>
+              <input type="text" data-capturado-por maxlength="80" placeholder="Nombre del operador">
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Notas</span>
+            <textarea data-notas rows="4" placeholder="Detalles adicionales"></textarea>
+          </label>
+
+          <div class="action-row">
+            <button class="btn btn-primary" type="submit">Guardar registro</button>
+            <button class="btn btn-secondary" type="button" data-exportar>Exportar CSV</button>
+            <button class="btn btn-danger" type="button" data-limpiar>Borrar respaldo local</button>
+          </div>
+
+          <div class="info-note">
+            <p>Captura entre 7:00 AM y 6:00 PM. El monto mínimo es 100 y la tarjeta debe llevar 16 dígitos.</p>
+          </div>
+
+          <div class="form-message" data-mensaje></div>
+        </form>
+      </div>
+
+      <aside class="donation-ui__sidebar">
+        <div class="glass-card side-card">
+          <div class="section-head simple">
+            <div>
+              <p class="section-kicker">Análisis rápido</p>
+              <h2>Conteo por monto</h2>
+            </div>
+          </div>
+          <div class="amount-summary" data-amount-summary></div>
+        </div>
+
+        <div class="glass-card side-card">
+          <div class="section-head simple">
+            <div>
+              <p class="section-kicker">Recomendaciones</p>
+              <h2>Buenas prácticas</h2>
+            </div>
+          </div>
+
+          <ul class="tips-list">
+            <li>Haz exportación CSV al finalizar el turno.</li>
+            <li>Revisa teléfono y monto antes de guardar.</li>
+            <li>Si cambia el Apps Script, actualiza la URL en la sección.</li>
+            <li>Usa el historial local como respaldo rápido del navegador.</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <section class="glass-card donation-ui__table-wrap">
+      <div class="section-head table-head">
+        <div>
+          <p class="section-kicker">Respaldo local</p>
+          <h2>Historial de registros</h2>
+          <p class="section-text">Puedes buscar por nombre, monto, teléfono, tarjeta o estatus.</p>
+        </div>
+
+        <input type="search" class="search-box" data-buscar placeholder="Buscar registro...">
+      </div>
+
+      <div class="table-shell">
+        <table class="records-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              <th>Monto</th>
+              <th>Tarjeta</th>
+              <th>Estatus</th>
+              <th>Método</th>
+              <th>Capturado por</th>
+              <th>Notas</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody data-tabla-body>
+            <tr>
+              <td colspan="12" class="empty-state">Todavía no hay registros.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
 </section>
+
+<style>
+  #shopify-section-{{ section.id }} .donation-ui {
+    --bg-main: #081120;
+    --bg-2: #0d1730;
+    --panel: rgba(11, 18, 38, 0.72);
+    --panel-strong: rgba(16, 25, 50, 0.86);
+    --line: rgba(255, 255, 255, 0.1);
+    --text: #f8fbff;
+    --muted: #9eafd6;
+    --primary: {{ section.settings.primary_color }};
+    --secondary: {{ section.settings.secondary_color }};
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #f43f5e;
+    --radius-xl: 28px;
+    --radius-lg: 22px;
+    --radius-md: 16px;
+    --shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
+    position: relative;
+    overflow: hidden;
+    color: var(--text);
+    font-family: Inter, system-ui, sans-serif;
+    padding: {{ section.settings.padding_top }}px 18px {{ section.settings.padding_bottom }}px;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(124, 92, 255, 0.32), transparent 24%),
+      radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.18), transparent 18%),
+      radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.16), transparent 22%),
+      linear-gradient(135deg, var(--bg-main), var(--bg-2));
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui.theme-light {
+    --bg-main: #edf4ff;
+    --bg-2: #f8fbff;
+    --panel: rgba(255, 255, 255, 0.74);
+    --panel-strong: rgba(255, 255, 255, 0.92);
+    --line: rgba(80, 95, 160, 0.14);
+    --text: #0b1630;
+    --muted: #64748b;
+    --shadow: 0 20px 60px rgba(89, 102, 160, 0.18);
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui * {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__container {
+    max-width: 1440px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__hero {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 24px;
+    align-items: stretch;
+    margin-bottom: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__hero-copy,
+  #shopify-section-{{ section.id }} .donation-ui__hero-card,
+  #shopify-section-{{ section.id }} .glass-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__hero-copy {
+    padding: 34px;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__hero-card {
+    padding: 28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)), var(--panel-strong);
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__eyebrow,
+  #shopify-section-{{ section.id }} .section-kicker {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--secondary);
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__title {
+    margin: 0;
+    font-size: clamp(2.2rem, 4vw, 4.2rem);
+    line-height: .95;
+    letter-spacing: -0.04em;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__subtitle,
+  #shopify-section-{{ section.id }} .section-text {
+    margin: 12px 0 0;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__hero-badge {
+    display: inline-flex;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(124,92,255,.18), rgba(34,211,238,.12));
+    border: 1px solid var(--line);
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 18px;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__hero-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  #shopify-section-{{ section.id }} .metric-card {
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.04);
+  }
+
+  #shopify-section-{{ section.id }} .metric-card span {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .metric-card strong {
+    font-size: 1.7rem;
+    letter-spacing: -0.03em;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(320px, .8fr);
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__form-wrap,
+  #shopify-section-{{ section.id }} .side-card,
+  #shopify-section-{{ section.id }} .donation-ui__table-wrap {
+    padding: 28px;
+  }
+
+  #shopify-section-{{ section.id }} .donation-ui__sidebar {
+    display: grid;
+    gap: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .section-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 22px;
+  }
+
+  #shopify-section-{{ section.id }} .section-head.simple {
+    margin-bottom: 18px;
+  }
+
+  #shopify-section-{{ section.id }} .section-head h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .donation-form {
+    display: grid;
+    gap: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .form-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .form-grid.two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #shopify-section-{{ section.id }} .field {
+    display: grid;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .field span {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  #shopify-section-{{ section.id }} .field input,
+  #shopify-section-{{ section.id }} .field select,
+  #shopify-section-{{ section.id }} .field textarea,
+  #shopify-section-{{ section.id }} .search-box {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px 16px;
+    outline: none;
+    transition: all .18s ease;
+  }
+
+  #shopify-section-{{ section.id }} .field textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  #shopify-section-{{ section.id }} .field input:focus,
+  #shopify-section-{{ section.id }} .field select:focus,
+  #shopify-section-{{ section.id }} .field textarea:focus,
+  #shopify-section-{{ section.id }} .search-box:focus {
+    border-color: rgba(124, 92, 255, 0.55);
+    box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.14);
+    transform: translateY(-1px);
+  }
+
+  #shopify-section-{{ section.id }} .action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .btn,
+  #shopify-section-{{ section.id }} .theme-toggle-btn {
+    border: 0;
+    border-radius: 16px;
+    padding: 13px 18px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform .18s ease, opacity .18s ease;
+  }
+
+  #shopify-section-{{ section.id }} .btn:hover,
+  #shopify-section-{{ section.id }} .theme-toggle-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  #shopify-section-{{ section.id }} .btn-primary {
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+  }
+
+  #shopify-section-{{ section.id }} .btn-secondary,
+  #shopify-section-{{ section.id }} .theme-toggle-btn {
+    color: var(--text);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid var(--line);
+  }
+
+  #shopify-section-{{ section.id }} .btn-danger {
+    color: #fff;
+    background: linear-gradient(135deg, #ef4444, #f43f5e);
+  }
+
+  #shopify-section-{{ section.id }} .info-note {
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  #shopify-section-{{ section.id }} .info-note p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  #shopify-section-{{ section.id }} .form-message {
+    display: none;
+    padding: 14px 16px;
+    border-radius: 14px;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .form-message.show { display: block; }
+  #shopify-section-{{ section.id }} .form-message.success { background: rgba(34,197,94,.14); color: #4ade80; }
+  #shopify-section-{{ section.id }} .form-message.error { background: rgba(244,63,94,.14); color: #fb7185; }
+
+  #shopify-section-{{ section.id }} .amount-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  #shopify-section-{{ section.id }} .amount-card {
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 16px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  #shopify-section-{{ section.id }} .amount-card strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+  }
+
+  #shopify-section-{{ section.id }} .amount-card span {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  #shopify-section-{{ section.id }} .tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .tips-list li {
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  #shopify-section-{{ section.id }} .table-head {
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .search-box {
+    max-width: 320px;
+  }
+
+  #shopify-section-{{ section.id }} .table-shell {
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .records-table {
+    width: 100%;
+    min-width: 1220px;
+    border-collapse: collapse;
+  }
+
+  #shopify-section-{{ section.id }} .records-table th,
+  #shopify-section-{{ section.id }} .records-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  #shopify-section-{{ section.id }} .records-table th {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: rgba(255,255,255,0.05);
+  }
+
+  #shopify-section-{{ section.id }} .status-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  #shopify-section-{{ section.id }} .s-transferido,
+  #shopify-section-{{ section.id }} .s-tarjeta-aprobada,
+  #shopify-section-{{ section.id }} .s-efectivo {
+    background: rgba(34,197,94,.14);
+    color: #4ade80;
+  }
+
+  #shopify-section-{{ section.id }} .s-pendiente {
+    background: rgba(245,158,11,.14);
+    color: #fbbf24;
+  }
+
+  #shopify-section-{{ section.id }} .s-rechazada,
+  #shopify-section-{{ section.id }} .s-cancelada {
+    background: rgba(244,63,94,.14);
+    color: #fb7185;
+  }
+
+  #shopify-section-{{ section.id }} .table-btn {
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .empty-state {
+    text-align: center;
+    color: var(--muted);
+    padding: 34px;
+  }
+
+  @media (max-width: 1100px) {
+    #shopify-section-{{ section.id }} .donation-ui__hero,
+    #shopify-section-{{ section.id }} .donation-ui__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .form-grid.two,
+    #shopify-section-{{ section.id }} .amount-summary,
+    #shopify-section-{{ section.id }} .donation-ui__hero-stats {
+      grid-template-columns: 1fr;
+    }
+
+    #shopify-section-{{ section.id }} .section-head,
+    #shopify-section-{{ section.id }} .table-head {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    #shopify-section-{{ section.id }} .search-box {
+      max-width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .donation-ui__title {
+      font-size: 2.2rem;
+    }
+  }
+</style>
+
+<script>
+(() => {
+  const section = document.getElementById('donaciones-registro-{{ section.id }}');
+  if (!section || section.dataset.initialized === 'true') return;
+  section.dataset.initialized = 'true';
+
+  const APPS_SCRIPT_URL = {{ section.settings.apps_script_url | json }};
+  const STORAGE_KEY = 'registroDonacionesShopify_{{ section.id }}';
+
+  const state = {
+    records: [],
+    filteredRecords: []
+  };
+
+  const els = {
+    form: section.querySelector('[data-donation-form]'),
+    fecha: section.querySelector('[data-fecha]'),
+    hora: section.querySelector('[data-hora]'),
+    nombre: section.querySelector('[data-nombre]'),
+    telefono: section.querySelector('[data-telefono]'),
+    monto: section.querySelector('[data-monto]'),
+    tarjeta: section.querySelector('[data-tarjeta]'),
+    estatus: section.querySelector('[data-estatus]'),
+    metodoPago: section.querySelector('[data-metodo-pago]'),
+    notas: section.querySelector('[data-notas]'),
+    capturadoPor: section.querySelector('[data-capturado-por]'),
+    totalRegistros: section.querySelector('[data-total-registros]'),
+    montoTotal: section.querySelector('[data-monto-total]'),
+    promedioMonto: section.querySelector('[data-promedio-monto]'),
+    ultimoHora: section.querySelector('[data-ultimo-hora]'),
+    amountSummary: section.querySelector('[data-amount-summary]'),
+    tablaBody: section.querySelector('[data-tabla-body]'),
+    mensaje: section.querySelector('[data-mensaje]'),
+    btnExportar: section.querySelector('[data-exportar]'),
+    btnLimpiar: section.querySelector('[data-limpiar]'),
+    buscar: section.querySelector('[data-buscar]'),
+    themeToggle: section.querySelector('[data-theme-toggle]')
+  };
+
+  function init() {
+    initTheme();
+    initHours();
+    loadRecords();
+    setDefaultFormValues();
+    attachEvents();
+    applyFilter();
+  }
+
+  function initTheme() {
+    const saved = localStorage.getItem('donation-ui-theme');
+    if (saved === 'light') section.classList.add('theme-light');
+    updateThemeButton();
+  }
+
+  function updateThemeButton() {
+    els.themeToggle.textContent = section.classList.contains('theme-light') ? 'Modo oscuro' : 'Modo claro';
+  }
+
+  function toggleTheme() {
+    section.classList.toggle('theme-light');
+    localStorage.setItem('donation-ui-theme', section.classList.contains('theme-light') ? 'light' : 'dark');
+    updateThemeButton();
+  }
+
+  function initHours() {
+    els.hora.innerHTML = '<option value="">Selecciona</option>';
+    for (let h = 7; h <= 18; h++) {
+      const value = String(h).padStart(2, '0') + ':00';
+      const label = new Date(2025, 0, 1, h, 0).toLocaleTimeString('es-MX', {
+        hour: 'numeric',
+        minute: '2-digit'
+      });
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label;
+      els.hora.appendChild(option);
+    }
+  }
+
+  function attachEvents() {
+    els.form.addEventListener('submit', handleSubmit);
+    els.btnExportar.addEventListener('click', exportCsv);
+    els.btnLimpiar.addEventListener('click', clearLocalBackup);
+    els.buscar.addEventListener('input', applyFilter);
+    els.themeToggle.addEventListener('click', toggleTheme);
+    els.tarjeta.addEventListener('input', () => {
+      els.tarjeta.value = els.tarjeta.value.replace(/\D/g, '').slice(0, 16);
+    });
+  }
+
+  function setDefaultFormValues() {
+    els.fecha.value = new Date().toISOString().split('T')[0];
+    els.monto.value = '100';
+  }
+
+  function validateCardNumber(value) {
+    const digits = String(value || '').replace(/\D/g, '');
+    return /^\d{16}$/.test(digits) ? digits : '';
+  }
+
+  function buildPayload() {
+    return {
+      fecha: els.fecha.value,
+      hora: els.hora.value,
+      nombre: els.nombre.value.trim(),
+      telefono: els.telefono.value.trim(),
+      monto: Number(els.monto.value),
+      tarjeta: validateCardNumber(els.tarjeta.value),
+      estatus: els.estatus.value,
+      metodoPago: els.metodoPago.value,
+      notas: els.notas.value.trim(),
+      capturadoPor: els.capturadoPor.value.trim()
+    };
+  }
+
+  function validatePayload(data) {
+    if (!APPS_SCRIPT_URL) return 'Falta configurar la URL de Apps Script.';
+    if (!data.fecha || !data.hora || !data.nombre || !data.telefono || !data.estatus || !data.metodoPago) {
+      return 'Completa todos los campos obligatorios.';
+    }
+    if (!Number.isFinite(data.monto) || data.monto < 100) return 'El monto debe ser mayor o igual a 100.';
+    if (!data.tarjeta) return 'La tarjeta debe tener exactamente 16 dígitos.';
+    const hour = Number(data.hora.split(':')[0]);
+    if (hour < 7 || hour > 18) return 'La hora debe estar entre 7:00 AM y 6:00 PM.';
+    return '';
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const payload = buildPayload();
+    const error = validatePayload(payload);
+
+    if (error) {
+      showMessage(error, 'error');
+      return;
+    }
+
+    try {
+      const response = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        redirect: 'follow',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (!result.ok) {
+        showMessage(result.message || 'No se pudo guardar en Google Sheets.', 'error');
+        return;
+      }
+
+      const record = { ...payload, id: result.id };
+      state.records.unshift(record);
+      persistRecords();
+      els.form.reset();
+      setDefaultFormValues();
+      applyFilter();
+      showMessage('Registro guardado correctamente.', 'success');
+    } catch (err) {
+      showMessage('No se pudo conectar con Google Sheets. Revisa el Apps Script.', 'error');
+    }
+  }
+
+  function persistRecords() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.records));
+  }
+
+  function loadRecords() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) state.records = parsed;
+    } catch (e) {
+      state.records = [];
+    }
+  }
+
+  function clearLocalBackup() {
+    if (!state.records.length) {
+      showMessage('No hay respaldo local para borrar.', 'error');
+      return;
+    }
+
+    const ok = confirm('¿Seguro que quieres borrar el respaldo local?');
+    if (!ok) return;
+
+    state.records = [];
+    localStorage.removeItem(STORAGE_KEY);
+    applyFilter();
+    showMessage('Respaldo local borrado correctamente.', 'success');
+  }
+
+  function applyFilter() {
+    const term = els.buscar.value.trim().toLowerCase();
+    state.filteredRecords = state.records.filter(record => {
+      if (!term) return true;
+      return [
+        record.id,
+        record.fecha,
+        record.hora,
+        record.nombre,
+        record.telefono,
+        record.monto,
+        record.tarjeta,
+        record.estatus,
+        record.metodoPago,
+        record.capturadoPor,
+        record.notas
+      ].join(' ').toLowerCase().includes(term);
+    });
+
+    renderStats();
+    renderAmountSummary();
+    renderTable();
+  }
+
+  function renderStats() {
+    const total = state.records.reduce((sum, record) => sum + Number(record.monto || 0), 0);
+    els.totalRegistros.textContent = state.records.length;
+    els.montoTotal.textContent = formatCurrency(total);
+    els.promedioMonto.textContent = formatCurrency(state.records.length ? total / state.records.length : 0);
+    els.ultimoHora.textContent = state.records.length ? formatHour(state.records[0].hora) : '—';
+  }
+
+  function renderAmountSummary() {
+    const counts = {};
+    state.records.forEach(record => {
+      const key = Number(record.monto).toFixed(2);
+      counts[key] = (counts[key] || 0) + 1;
+    });
+
+    const keys = Object.keys(counts).sort((a, b) => Number(a) - Number(b));
+
+    if (!keys.length) {
+      els.amountSummary.innerHTML = '<div class="amount-card"><strong>Sin datos</strong><span>Los montos aparecerán aquí.</span></div>';
+      return;
+    }
+
+    els.amountSummary.innerHTML = keys.map(key => `
+      <div class="amount-card">
+        <strong>${formatCurrency(Number(key))}</strong>
+        <span>${counts[key]} registro${counts[key] === 1 ? '' : 's'}</span>
+      </div>
+    `).join('');
+  }
+
+  function renderTable() {
+    if (!state.filteredRecords.length) {
+      els.tablaBody.innerHTML = '<tr><td colspan="12" class="empty-state">No hay registros que coincidan con tu búsqueda.</td></tr>';
+      return;
+    }
+
+    els.tablaBody.innerHTML = state.filteredRecords.map((record, index) => `
+      <tr>
+        <td>${escapeHtml(record.id || '')}</td>
+        <td>${escapeHtml(record.fecha)}</td>
+        <td>${formatHour(record.hora)}</td>
+        <td>${escapeHtml(record.nombre)}</td>
+        <td>${escapeHtml(record.telefono)}</td>
+        <td>${formatCurrency(Number(record.monto))}</td>
+        <td>${escapeHtml(record.tarjeta)}</td>
+        <td><span class="status-pill ${statusClass(record.estatus)}">${escapeHtml(record.estatus)}</span></td>
+        <td>${escapeHtml(record.metodoPago)}</td>
+        <td>${escapeHtml(record.capturadoPor || '')}</td>
+        <td>${escapeHtml(record.notas || '')}</td>
+        <td><button class="table-btn" type="button" data-remove="${escapeHtml(record.id || String(index))}">Eliminar</button></td>
+      </tr>
+    `).join('');
+
+    els.tablaBody.querySelectorAll('[data-remove]').forEach(btn => {
+      btn.addEventListener('click', () => removeRecord(btn.getAttribute('data-remove')));
+    });
+  }
+
+  function removeRecord(id) {
+    const ok = confirm('¿Seguro que quieres eliminar este registro del respaldo local?');
+    if (!ok) return;
+    state.records = state.records.filter(record => String(record.id) !== String(id));
+    persistRecords();
+    applyFilter();
+    showMessage('Registro eliminado.', 'success');
+  }
+
+  function exportCsv() {
+    if (!state.records.length) {
+      showMessage('No hay registros para exportar.', 'error');
+      return;
+    }
+
+    const rows = [
+      ['ID', 'Fecha', 'Hora', 'Nombre', 'Telefono', 'Monto', 'NumeroTarjeta', 'Estatus', 'MetodoPago', 'Notas', 'CapturadoPor'],
+      ...state.records.map(record => [
+        record.id || '',
+        record.fecha,
+        formatHour(record.hora),
+        record.nombre,
+        record.telefono,
+        record.monto,
+        record.tarjeta,
+        record.estatus,
+        record.metodoPago,
+        record.notas || '',
+        record.capturadoPor || ''
+      ])
+    ];
+
+    const csv = rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'registro-donaciones.csv';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    showMessage('CSV exportado correctamente.', 'success');
+  }
+
+  function showMessage(text, type) {
+    els.mensaje.textContent = text;
+    els.mensaje.className = `form-message show ${type}`;
+    clearTimeout(showMessage.timer);
+    showMessage.timer = setTimeout(() => {
+      els.mensaje.className = 'form-message';
+    }, 3500);
+  }
+
+  function formatCurrency(value) {
+    return new Intl.NumberFormat('es-MX', {
+      style: 'currency',
+      currency: 'MXN'
+    }).format(value || 0);
+  }
+
+  function formatHour(value) {
+    if (!value) return '—';
+    const [h, m] = String(value).split(':').map(Number);
+    const d = new Date();
+    d.setHours(h, m, 0, 0);
+    return d.toLocaleTimeString('es-MX', { hour: 'numeric', minute: '2-digit' });
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[c]));
+  }
+
+  function statusClass(status) {
+    return 's-' + String(status || '').toLowerCase().replace(/\s+/g, '-');
+  }
+
+  init();
+})();
+</script>
 
 {% schema %}
 {
   "name": "Registro donaciones",
   "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto superior",
+      "default": "Sistema conectado a Google Sheets"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -17,7 +1028,45 @@
       "type": "textarea",
       "id": "subheading",
       "label": "Subtítulo",
-      "default": "Sección de prueba"
+      "default": "Captura donaciones, guarda respaldo local y envía cada registro a tu hoja automáticamente."
+    },
+    {
+      "type": "text",
+      "id": "apps_script_url",
+      "label": "URL de Apps Script",
+      "default": "https://script.google.com/macros/s/AKfycbwFSwe_MHBJudplfglxooUTRlF0QdHdw9Eu9o9obrD8coKBP_9jas4xKKGSLTUfjO44/exec"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Color principal",
+      "default": "#7c5cff"
+    },
+    {
+      "type": "color",
+      "id": "secondary_color",
+      "label": "Color secundario",
+      "default": "#22d3ee"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio arriba",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio abajo",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 36
     }
   ],
   "presets": [
