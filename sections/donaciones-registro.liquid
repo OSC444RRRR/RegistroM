@@ -1,88 +1,106 @@
-<section id="donaciones-registro-{{ section.id }}" class="donation-ui" data-section-id="{{ section.id }}">
-  <div class="donation-ui__bg"></div>
+<section id="donaciones-registro-{{ section.id }}" class="dreg" data-section-id="{{ section.id }}">
 
-  <div class="donation-ui__container">
-    <header class="donation-ui__hero">
-      <div class="donation-ui__hero-copy">
-        <span class="donation-ui__eyebrow">{{ section.settings.eyebrow }}</span>
-        <h1 class="donation-ui__title">{{ section.settings.heading }}</h1>
-        <p class="donation-ui__subtitle">{{ section.settings.subheading }}</p>
+  <!-- ░░ FONDO ANIMADO ░░ -->
+  <div class="dreg__bg" aria-hidden="true">
+    <div class="dreg__orb dreg__orb--1"></div>
+    <div class="dreg__orb dreg__orb--2"></div>
+    <div class="dreg__orb dreg__orb--3"></div>
+    <div class="dreg__grid"></div>
+  </div>
+
+  <div class="dreg__wrap">
+
+    <!-- ░░ HERO ░░ -->
+    <header class="dreg__hero">
+      <div class="dreg__hero-left">
+        <span class="dreg__badge">
+          <span class="dreg__badge-dot"></span>
+          {{ section.settings.eyebrow }}
+        </span>
+        <h1 class="dreg__title">{{ section.settings.heading }}</h1>
+        <p class="dreg__sub">{{ section.settings.subheading }}</p>
       </div>
 
-      <div class="donation-ui__hero-card">
-        <div class="donation-ui__hero-badge">Panel conectado a Google Sheets</div>
-        <div class="donation-ui__hero-stats">
-          <div class="metric-card">
-            <span>Registros</span>
-            <strong data-total-registros>0</strong>
-          </div>
-          <div class="metric-card">
-            <span>Total</span>
-            <strong data-monto-total>$0</strong>
-          </div>
-          <div class="metric-card">
-            <span>Promedio</span>
-            <strong data-promedio-monto>$0</strong>
-          </div>
-          <div class="metric-card">
-            <span>Última hora</span>
-            <strong data-ultimo-hora>—</strong>
-          </div>
+      <div class="dreg__kpis">
+        <div class="dreg__kpi">
+          <span class="dreg__kpi-icon">📋</span>
+          <strong data-total-registros>0</strong>
+          <span>Registros</span>
+        </div>
+        <div class="dreg__kpi dreg__kpi--accent">
+          <span class="dreg__kpi-icon">💰</span>
+          <strong data-monto-total>$0</strong>
+          <span>Total</span>
+        </div>
+        <div class="dreg__kpi">
+          <span class="dreg__kpi-icon">📊</span>
+          <strong data-promedio-monto>$0</strong>
+          <span>Promedio</span>
+        </div>
+        <div class="dreg__kpi">
+          <span class="dreg__kpi-icon">🕐</span>
+          <strong data-ultimo-hora>—</strong>
+          <span>Último</span>
         </div>
       </div>
     </header>
 
-    <section class="donation-ui__grid">
-      <div class="glass-card donation-ui__form-wrap">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Captura manual</p>
-            <h2>Nuevo registro</h2>
-            <p class="section-text">Guarda localmente, exporta CSV y envía automáticamente la información al Apps Script.</p>
+    <!-- ░░ CONTENIDO PRINCIPAL ░░ -->
+    <div class="dreg__body">
+
+      <!-- FORMULARIO -->
+      <div class="dreg__card dreg__form-card">
+        <div class="dreg__card-header">
+          <div class="dreg__card-title-block">
+            <span class="dreg__card-label">Captura manual</span>
+            <h2 class="dreg__card-title">Nuevo registro</h2>
           </div>
-          <button type="button" class="theme-toggle-btn" data-theme-toggle>Modo oscuro</button>
+          <button type="button" class="dreg__theme-btn" data-theme-toggle>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <span>Modo claro</span>
+          </button>
         </div>
 
-        <form class="donation-form" data-donation-form novalidate>
-          <div class="form-grid two">
-            <label class="field">
-              <span>Fecha</span>
-              <input type="date" data-fecha required>
+        <form class="dreg__form" data-donation-form novalidate>
+          <div class="dreg__row">
+            <label class="dreg__field">
+              <span class="dreg__field-label">Fecha</span>
+              <input type="date" data-fecha required class="dreg__input">
             </label>
-
-            <label class="field">
-              <span>Hora</span>
-              <select data-hora required></select>
+            <label class="dreg__field">
+              <span class="dreg__field-label">Hora</span>
+              <select data-hora required class="dreg__input"></select>
             </label>
           </div>
 
-          <label class="field">
-            <span>Nombre</span>
-            <input type="text" data-nombre maxlength="120" placeholder="Nombre completo" required>
+          <label class="dreg__field">
+            <span class="dreg__field-label">Nombre completo</span>
+            <input type="text" data-nombre maxlength="120" placeholder="Nombre del donante" required class="dreg__input">
           </label>
 
-          <div class="form-grid two">
-            <label class="field">
-              <span>Teléfono</span>
-              <input type="tel" data-telefono maxlength="20" placeholder="6671234567" required>
+          <div class="dreg__row">
+            <label class="dreg__field">
+              <span class="dreg__field-label">Teléfono</span>
+              <input type="tel" data-telefono maxlength="20" placeholder="6671234567" required class="dreg__input">
             </label>
-
-            <label class="field">
-              <span>Monto</span>
-              <input type="number" data-monto min="100" step="0.01" placeholder="Ej. 250 o 2000" required>
+            <label class="dreg__field">
+              <span class="dreg__field-label">Monto (MXN)</span>
+              <div class="dreg__input-prefix">
+                <span>$</span>
+                <input type="number" data-monto min="100" step="0.01" placeholder="250" required class="dreg__input dreg__input--prefixed">
+              </div>
             </label>
           </div>
 
-          <div class="form-grid two">
-            <label class="field">
-              <span>Número de tarjeta</span>
-              <input type="text" data-tarjeta maxlength="16" inputmode="numeric" placeholder="16 dígitos" required>
+          <div class="dreg__row">
+            <label class="dreg__field">
+              <span class="dreg__field-label">Número de tarjeta</span>
+              <input type="text" data-tarjeta maxlength="19" inputmode="numeric" placeholder="•••• •••• •••• ••••" required class="dreg__input dreg__input--mono">
             </label>
-
-            <label class="field">
-              <span>Estatus</span>
-              <select data-estatus required>
-                <option value="">Selecciona</option>
+            <label class="dreg__field">
+              <span class="dreg__field-label">Estatus</span>
+              <select data-estatus required class="dreg__input">
+                <option value="">Selecciona…</option>
                 <option>Transferido</option>
                 <option>Tarjeta aprobada</option>
                 <option>Efectivo</option>
@@ -93,11 +111,11 @@
             </label>
           </div>
 
-          <div class="form-grid two">
-            <label class="field">
-              <span>Método de pago</span>
-              <select data-metodo-pago required>
-                <option value="">Selecciona</option>
+          <div class="dreg__row">
+            <label class="dreg__field">
+              <span class="dreg__field-label">Método de pago</span>
+              <select data-metodo-pago required class="dreg__input">
+                <option value="">Selecciona…</option>
                 <option>Transferencia</option>
                 <option>Tarjeta</option>
                 <option>Efectivo</option>
@@ -105,903 +123,1036 @@
                 <option>Otro</option>
               </select>
             </label>
-
-            <label class="field">
-              <span>Capturado por</span>
-              <input type="text" data-capturado-por maxlength="80" placeholder="Nombre del operador">
+            <label class="dreg__field">
+              <span class="dreg__field-label">Capturado por</span>
+              <input type="text" data-capturado-por maxlength="80" placeholder="Nombre del operador" class="dreg__input">
             </label>
           </div>
 
-          <label class="field">
-            <span>Notas</span>
-            <textarea data-notas rows="4" placeholder="Detalles adicionales"></textarea>
+          <label class="dreg__field">
+            <span class="dreg__field-label">Notas</span>
+            <textarea data-notas rows="3" placeholder="Detalles adicionales…" class="dreg__input dreg__input--textarea"></textarea>
           </label>
 
-          <div class="action-row">
-            <button class="btn btn-primary" type="submit">Guardar registro</button>
-            <button class="btn btn-secondary" type="button" data-exportar>Exportar CSV</button>
-            <button class="btn btn-danger" type="button" data-limpiar>Borrar respaldo local</button>
+          <div class="dreg__actions">
+            <button class="dreg__btn dreg__btn--primary" type="submit" data-submit-btn>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>
+              Guardar registro
+            </button>
+            <button class="dreg__btn dreg__btn--ghost" type="button" data-exportar>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Exportar CSV
+            </button>
+            <button class="dreg__btn dreg__btn--danger" type="button" data-limpiar>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+              Limpiar
+            </button>
           </div>
 
-          <div class="info-note">
-            <p>Captura entre 7:00 AM y 6:00 PM. El monto mínimo es 100 y la tarjeta debe llevar 16 dígitos.</p>
+          <div class="dreg__hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Captura entre 7:00 AM y 6:00 PM · Monto mínimo $100 · Tarjeta 16 dígitos
           </div>
 
-          <div class="form-message" data-mensaje></div>
+          <div class="dreg__msg" data-mensaje></div>
         </form>
       </div>
 
-      <aside class="donation-ui__sidebar">
-        <div class="glass-card side-card">
-          <div class="section-head simple">
-            <div>
-              <p class="section-kicker">Análisis rápido</p>
-              <h2>Conteo por monto</h2>
-            </div>
+      <!-- SIDEBAR -->
+      <aside class="dreg__sidebar">
+        <div class="dreg__card">
+          <div class="dreg__card-header dreg__card-header--simple">
+            <span class="dreg__card-label">Análisis</span>
+            <h2 class="dreg__card-title">Montos</h2>
           </div>
-          <div class="amount-summary" data-amount-summary></div>
+          <div class="dreg__amounts" data-amount-summary>
+            <p class="dreg__empty-inline">Sin registros aún.</p>
+          </div>
         </div>
 
-        <div class="glass-card side-card">
-          <div class="section-head simple">
-            <div>
-              <p class="section-kicker">Recomendaciones</p>
-              <h2>Buenas prácticas</h2>
-            </div>
+        <div class="dreg__card">
+          <div class="dreg__card-header dreg__card-header--simple">
+            <span class="dreg__card-label">Tips</span>
+            <h2 class="dreg__card-title">Buenas prácticas</h2>
           </div>
-
-          <ul class="tips-list">
-            <li>Haz exportación CSV al finalizar el turno.</li>
-            <li>Revisa teléfono y monto antes de guardar.</li>
-            <li>Si cambia el Apps Script, actualiza la URL en la sección.</li>
-            <li>Usa el historial local como respaldo rápido del navegador.</li>
+          <ul class="dreg__tips">
+            <li>Exporta CSV al terminar el turno.</li>
+            <li>Verifica teléfono y monto antes de guardar.</li>
+            <li>Si cambia el Apps Script, actualiza la URL.</li>
+            <li>El historial local es un respaldo de navegador.</li>
           </ul>
         </div>
       </aside>
-    </section>
+    </div>
 
-    <section class="glass-card donation-ui__table-wrap">
-      <div class="section-head table-head">
+    <!-- ░░ TABLA ░░ -->
+    <div class="dreg__card dreg__table-card">
+      <div class="dreg__card-header dreg__card-header--table">
         <div>
-          <p class="section-kicker">Respaldo local</p>
-          <h2>Historial de registros</h2>
-          <p class="section-text">Puedes buscar por nombre, monto, teléfono, tarjeta o estatus.</p>
+          <span class="dreg__card-label">Respaldo local</span>
+          <h2 class="dreg__card-title">Historial de registros</h2>
         </div>
-
-        <input type="search" class="search-box" data-buscar placeholder="Buscar registro...">
+        <div class="dreg__search-wrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" class="dreg__search" data-buscar placeholder="Buscar…">
+        </div>
       </div>
 
-      <div class="table-shell">
-        <table class="records-table">
+      <div class="dreg__table-scroll">
+        <table class="dreg__table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Fecha</th>
-              <th>Hora</th>
-              <th>Nombre</th>
-              <th>Teléfono</th>
-              <th>Monto</th>
-              <th>Tarjeta</th>
-              <th>Estatus</th>
-              <th>Método</th>
-              <th>Capturado por</th>
-              <th>Notas</th>
-              <th>Acción</th>
+              <th>ID</th><th>Fecha</th><th>Hora</th><th>Nombre</th>
+              <th>Teléfono</th><th>Monto</th><th>Tarjeta</th>
+              <th>Estatus</th><th>Método</th><th>Capturado por</th>
+              <th>Notas</th><th></th>
             </tr>
           </thead>
           <tbody data-tabla-body>
-            <tr>
-              <td colspan="12" class="empty-state">Todavía no hay registros.</td>
-            </tr>
+            <tr><td colspan="12" class="dreg__empty">Sin registros todavía.</td></tr>
           </tbody>
         </table>
       </div>
-    </section>
-  </div>
+    </div>
+
+  </div><!-- /wrap -->
 </section>
 
+<!-- ============================================================
+     ESTILOS
+     ============================================================ -->
 <style>
-  #shopify-section-{{ section.id }} .donation-ui {
-    --bg-main: #081120;
-    --bg-2: #0d1730;
-    --panel: rgba(11, 18, 38, 0.72);
-    --panel-strong: rgba(16, 25, 50, 0.86);
-    --line: rgba(255, 255, 255, 0.1);
-    --text: #f8fbff;
-    --muted: #9eafd6;
-    --primary: {{ section.settings.primary_color }};
-    --secondary: {{ section.settings.secondary_color }};
-    --success: #22c55e;
-    --warning: #f59e0b;
-    --danger: #f43f5e;
-    --radius-xl: 28px;
-    --radius-lg: 22px;
-    --radius-md: 16px;
-    --shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
-    position: relative;
-    overflow: hidden;
-    color: var(--text);
-    font-family: Inter, system-ui, sans-serif;
-    padding: {{ section.settings.padding_top }}px 18px {{ section.settings.padding_bottom }}px;
-    background:
-      radial-gradient(circle at 0% 0%, rgba(124, 92, 255, 0.32), transparent 24%),
-      radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.18), transparent 18%),
-      radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.16), transparent 22%),
-      linear-gradient(135deg, var(--bg-main), var(--bg-2));
-  }
+/* ── TOKENS ──────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg {
+  --c-bg:       #05080f;
+  --c-surface:  #0c1120;
+  --c-card:     rgba(255,255,255,.045);
+  --c-border:   rgba(255,255,255,.08);
+  --c-text:     #e8edf8;
+  --c-muted:    #6b7ca8;
+  --c-primary:  {{ section.settings.primary_color }};
+  --c-accent:   {{ section.settings.secondary_color }};
+  --c-success:  #22c55e;
+  --c-warn:     #f59e0b;
+  --c-danger:   #f43f5e;
+  --r-card:     20px;
+  --r-input:    12px;
+  --r-btn:      12px;
+  --shadow-card: 0 1px 0 rgba(255,255,255,.06) inset, 0 24px 64px rgba(0,0,0,.4);
+  font-family: 'DM Sans', 'Outfit', system-ui, sans-serif;
+  background: var(--c-bg);
+  color: var(--c-text);
+  padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  position: relative;
+  overflow: hidden;
+}
 
-  #shopify-section-{{ section.id }} .donation-ui.theme-light {
-    --bg-main: #edf4ff;
-    --bg-2: #f8fbff;
-    --panel: rgba(255, 255, 255, 0.74);
-    --panel-strong: rgba(255, 255, 255, 0.92);
-    --line: rgba(80, 95, 160, 0.14);
-    --text: #0b1630;
-    --muted: #64748b;
-    --shadow: 0 20px 60px rgba(89, 102, 160, 0.18);
-  }
+/* Light mode */
+#shopify-section-{{ section.id }} .dreg.theme-light {
+  --c-bg:      #f0f4ff;
+  --c-surface: #e4eaf8;
+  --c-card:    rgba(255,255,255,.7);
+  --c-border:  rgba(0,0,0,.09);
+  --c-text:    #0b1226;
+  --c-muted:   #556080;
+  --shadow-card: 0 1px 0 rgba(255,255,255,.9) inset, 0 8px 32px rgba(0,0,50,.1);
+}
 
-  #shopify-section-{{ section.id }} .donation-ui * {
-    box-sizing: border-box;
-  }
+#shopify-section-{{ section.id }} .dreg * { box-sizing: border-box; }
 
-  #shopify-section-{{ section.id }} .donation-ui__container {
-    max-width: 1440px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-  }
+/* ── FONDO ───────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__bg {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+}
+#shopify-section-{{ section.id }} .dreg__orb {
+  position: absolute; border-radius: 50%; filter: blur(90px); opacity: .55;
+  animation: orbFloat 12s ease-in-out infinite alternate;
+}
+#shopify-section-{{ section.id }} .dreg__orb--1 {
+  width: 500px; height: 500px; top: -120px; left: -80px;
+  background: radial-gradient(circle, var(--c-primary) 0%, transparent 70%);
+  opacity: .18;
+}
+#shopify-section-{{ section.id }} .dreg__orb--2 {
+  width: 400px; height: 400px; top: 40%; right: -100px;
+  background: radial-gradient(circle, var(--c-accent) 0%, transparent 70%);
+  opacity: .14; animation-delay: -5s;
+}
+#shopify-section-{{ section.id }} .dreg__orb--3 {
+  width: 350px; height: 350px; bottom: -60px; left: 30%;
+  background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+  opacity: .10; animation-delay: -8s;
+}
+#shopify-section-{{ section.id }} .dreg__grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.dreg.theme-light .dreg__grid {
+  background-image:
+    linear-gradient(rgba(0,0,80,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,80,.04) 1px, transparent 1px);
+}
+@keyframes orbFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, 20px) scale(1.05); }
+}
 
-  #shopify-section-{{ section.id }} .donation-ui__hero {
+/* ── LAYOUT ──────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__wrap {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── HERO ────────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 32px 36px;
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(16px);
+}
+#shopify-section-{{ section.id }} .dreg__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--c-border);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 16px;
+}
+#shopify-section-{{ section.id }} .dreg__badge-dot {
+  width: 6px; height: 6px;
+  background: var(--c-success);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(.8); }
+}
+#shopify-section-{{ section.id }} .dreg__title {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--c-text) 40%, var(--c-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+#shopify-section-{{ section.id }} .dreg__sub {
+  margin: 0;
+  color: var(--c-muted);
+  line-height: 1.65;
+  max-width: 480px;
+  font-size: .95rem;
+}
+#shopify-section-{{ section.id }} .dreg__kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+#shopify-section-{{ section.id }} .dreg__kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--c-border);
+  text-align: center;
+  min-width: 90px;
+}
+#shopify-section-{{ section.id }} .dreg__kpi--accent {
+  background: linear-gradient(135deg, rgba(124,92,255,.12), rgba(34,211,238,.08));
+  border-color: rgba(124,92,255,.25);
+}
+#shopify-section-{{ section.id }} .dreg__kpi-icon { font-size: 1.2rem; }
+#shopify-section-{{ section.id }} .dreg__kpi strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+}
+#shopify-section-{{ section.id }} .dreg__kpi span {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--c-muted);
+  font-weight: 600;
+}
+
+/* ── BODY GRID ───────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ── CARDS ───────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(16px);
+  padding: 28px;
+}
+#shopify-section-{{ section.id }} .dreg__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+#shopify-section-{{ section.id }} .dreg__card-header--simple { margin-bottom: 18px; }
+#shopify-section-{{ section.id }} .dreg__card-header--table {
+  align-items: center;
+  flex-wrap: wrap;
+}
+#shopify-section-{{ section.id }} .dreg__card-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  margin-bottom: 4px;
+}
+#shopify-section-{{ section.id }} .dreg__card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── FORM ────────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+#shopify-section-{{ section.id }} .dreg__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+#shopify-section-{{ section.id }} .dreg__field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+#shopify-section-{{ section.id }} .dreg__field-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+#shopify-section-{{ section.id }} .dreg__input {
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-input);
+  color: var(--c-text);
+  font-size: .9rem;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s, background .15s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+#shopify-section-{{ section.id }} .dreg__input::placeholder { color: var(--c-muted); opacity: .7; }
+#shopify-section-{{ section.id }} .dreg__input:focus {
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px rgba(124,92,255,.18);
+  background: rgba(255,255,255,.07);
+}
+#shopify-section-{{ section.id }} .dreg__input--mono { font-family: 'Courier New', monospace; letter-spacing: .08em; }
+#shopify-section-{{ section.id }} .dreg__input--textarea { min-height: 90px; resize: vertical; }
+#shopify-section-{{ section.id }} .dreg__input-prefix {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-input);
+  overflow: hidden;
+  transition: border-color .15s, box-shadow .15s;
+}
+#shopify-section-{{ section.id }} .dreg__input-prefix:focus-within {
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px rgba(124,92,255,.18);
+}
+#shopify-section-{{ section.id }} .dreg__input-prefix > span {
+  padding: 0 12px;
+  font-weight: 700;
+  color: var(--c-muted);
+  font-size: .85rem;
+  border-right: 1px solid var(--c-border);
+  line-height: 1;
+  white-space: nowrap;
+}
+#shopify-section-{{ section.id }} .dreg__input--prefixed {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 var(--r-input) var(--r-input) 0;
+  background: transparent;
+}
+
+/* Light mode inputs */
+#shopify-section-{{ section.id }} .dreg.theme-light .dreg__input,
+#shopify-section-{{ section.id }} .dreg.theme-light .dreg__input-prefix {
+  background: rgba(255,255,255,.75);
+  border-color: rgba(0,0,80,.12);
+}
+#shopify-section-{{ section.id }} .dreg.theme-light .dreg__input:focus {
+  background: #fff;
+}
+
+/* ── BOTONES ─────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#shopify-section-{{ section.id }} .dreg__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: var(--r-btn);
+  font-size: .875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .15s, opacity .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+#shopify-section-{{ section.id }} .dreg__btn:hover { transform: translateY(-2px); }
+#shopify-section-{{ section.id }} .dreg__btn:active { transform: translateY(0); }
+#shopify-section-{{ section.id }} .dreg__btn--primary {
+  background: linear-gradient(135deg, var(--c-primary), var(--c-accent));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(124,92,255,.35);
+}
+#shopify-section-{{ section.id }} .dreg__btn--primary:hover {
+  box-shadow: 0 6px 28px rgba(124,92,255,.5);
+}
+#shopify-section-{{ section.id }} .dreg__btn--ghost {
+  background: rgba(255,255,255,.07);
+  border: 1px solid var(--c-border);
+  color: var(--c-text);
+}
+#shopify-section-{{ section.id }} .dreg__btn--danger {
+  background: rgba(244,63,94,.12);
+  border: 1px solid rgba(244,63,94,.25);
+  color: #fb7185;
+}
+#shopify-section-{{ section.id }} .dreg__btn:disabled {
+  opacity: .5; cursor: not-allowed; transform: none;
+}
+#shopify-section-{{ section.id }} .dreg__theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-btn);
+  color: var(--c-muted);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color .15s, background .15s;
+  white-space: nowrap;
+}
+#shopify-section-{{ section.id }} .dreg__theme-btn:hover { color: var(--c-text); }
+
+/* ── HINT & MSG ──────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__hint {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  border-radius: var(--r-input);
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--c-border);
+  font-size: .78rem;
+  color: var(--c-muted);
+  line-height: 1.5;
+}
+#shopify-section-{{ section.id }} .dreg__msg {
+  display: none;
+  padding: 12px 16px;
+  border-radius: var(--r-input);
+  font-size: .875rem;
+  font-weight: 600;
+}
+#shopify-section-{{ section.id }} .dreg__msg.show { display: block; }
+#shopify-section-{{ section.id }} .dreg__msg.success {
+  background: rgba(34,197,94,.12);
+  border: 1px solid rgba(34,197,94,.25);
+  color: #4ade80;
+}
+#shopify-section-{{ section.id }} .dreg__msg.error {
+  background: rgba(244,63,94,.12);
+  border: 1px solid rgba(244,63,94,.25);
+  color: #fb7185;
+}
+#shopify-section-{{ section.id }} .dreg__msg.loading {
+  background: rgba(124,92,255,.12);
+  border: 1px solid rgba(124,92,255,.25);
+  color: var(--c-accent);
+}
+
+/* ── AMOUNTS ─────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__amounts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+#shopify-section-{{ section.id }} .dreg__amount-card {
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--c-border);
+  background: rgba(255,255,255,.04);
+}
+#shopify-section-{{ section.id }} .dreg__amount-card strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+#shopify-section-{{ section.id }} .dreg__amount-card span {
+  font-size: .75rem;
+  color: var(--c-muted);
+}
+#shopify-section-{{ section.id }} .dreg__empty-inline {
+  color: var(--c-muted);
+  font-size: .85rem;
+  margin: 0;
+}
+
+/* ── TIPS ────────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__tips {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#shopify-section-{{ section.id }} .dreg__tips li {
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--c-border);
+  background: rgba(255,255,255,.03);
+  color: var(--c-muted);
+  font-size: .82rem;
+  line-height: 1.5;
+}
+#shopify-section-{{ section.id }} .dreg__tips li::before {
+  content: '→ ';
+  color: var(--c-accent);
+  font-weight: 700;
+}
+
+/* ── TABLA ───────────────────────────────────────────────────── */
+#shopify-section-{{ section.id }} .dreg__search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-input);
+  padding: 0 12px;
+  color: var(--c-muted);
+}
+#shopify-section-{{ section.id }} .dreg__search {
+  border: none;
+  background: transparent;
+  color: var(--c-text);
+  padding: 10px 0;
+  outline: none;
+  font-size: .875rem;
+  width: 200px;
+}
+#shopify-section-{{ section.id }} .dreg__search::placeholder { color: var(--c-muted); }
+#shopify-section-{{ section.id }} .dreg__table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--c-border);
+  border-radius: 14px;
+}
+#shopify-section-{{ section.id }} .dreg__table {
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: collapse;
+}
+#shopify-section-{{ section.id }} .dreg__table th,
+#shopify-section-{{ section.id }} .dreg__table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--c-border);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+#shopify-section-{{ section.id }} .dreg__table th {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  font-weight: 700;
+  background: rgba(255,255,255,.03);
+}
+#shopify-section-{{ section.id }} .dreg__table tbody tr:hover {
+  background: rgba(255,255,255,.025);
+}
+#shopify-section-{{ section.id }} .dreg__table tbody tr:last-child td {
+  border-bottom: none;
+}
+#shopify-section-{{ section.id }} .dreg__empty {
+  text-align: center;
+  color: var(--c-muted);
+  padding: 40px;
+  font-size: .875rem;
+}
+
+/* Status pills */
+#shopify-section-{{ section.id }} .s-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+#shopify-section-{{ section.id }} .s-transferido,
+#shopify-section-{{ section.id }} .s-tarjeta-aprobada,
+#shopify-section-{{ section.id }} .s-efectivo {
+  background: rgba(34,197,94,.12); color: #4ade80; border: 1px solid rgba(34,197,94,.2);
+}
+#shopify-section-{{ section.id }} .s-pendiente {
+  background: rgba(245,158,11,.12); color: #fbbf24; border: 1px solid rgba(245,158,11,.2);
+}
+#shopify-section-{{ section.id }} .s-rechazada,
+#shopify-section-{{ section.id }} .s-cancelada {
+  background: rgba(244,63,94,.12); color: #fb7185; border: 1px solid rgba(244,63,94,.2);
+}
+#shopify-section-{{ section.id }} .dreg__del-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--c-border);
+  background: rgba(244,63,94,.07);
+  color: #fb7185;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s;
+}
+#shopify-section-{{ section.id }} .dreg__del-btn:hover {
+  background: rgba(244,63,94,.18);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  #shopify-section-{{ section.id }} .dreg__body {
+    grid-template-columns: 1fr;
+  }
+  #shopify-section-{{ section.id }} .dreg__sidebar {
     display: grid;
-    grid-template-columns: 1.15fr .85fr;
-    gap: 24px;
-    align-items: stretch;
-    margin-bottom: 24px;
+    grid-template-columns: 1fr 1fr;
   }
-
-  #shopify-section-{{ section.id }} .donation-ui__hero-copy,
-  #shopify-section-{{ section.id }} .donation-ui__hero-card,
-  #shopify-section-{{ section.id }} .glass-card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+  #shopify-section-{{ section.id }} .dreg__hero {
+    grid-template-columns: 1fr;
   }
-
-  #shopify-section-{{ section.id }} .donation-ui__hero-copy {
-    padding: 34px;
+  #shopify-section-{{ section.id }} .dreg__kpis {
+    grid-template-columns: repeat(4, 1fr);
   }
+}
 
-  #shopify-section-{{ section.id }} .donation-ui__hero-card {
-    padding: 28px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)), var(--panel-strong);
-  }
+@media (max-width: 768px) {
+  #shopify-section-{{ section.id }} .dreg__wrap { padding: 0 14px; gap: 14px; }
+  #shopify-section-{{ section.id }} .dreg__hero { padding: 22px 18px; }
+  #shopify-section-{{ section.id }} .dreg__kpis { grid-template-columns: repeat(2, 1fr); }
+  #shopify-section-{{ section.id }} .dreg__card { padding: 18px; }
+  #shopify-section-{{ section.id }} .dreg__row { grid-template-columns: 1fr; gap: 14px; }
+  #shopify-section-{{ section.id }} .dreg__sidebar { grid-template-columns: 1fr; }
+  #shopify-section-{{ section.id }} .dreg__amounts { grid-template-columns: 1fr 1fr; }
+  #shopify-section-{{ section.id }} .dreg__card-header--table { flex-direction: column; align-items: stretch; }
+  #shopify-section-{{ section.id }} .dreg__search { width: 100%; }
+  #shopify-section-{{ section.id }} .dreg__search-wrap { width: 100%; }
+  #shopify-section-{{ section.id }} .dreg__actions { flex-direction: column; }
+  #shopify-section-{{ section.id }} .dreg__btn { justify-content: center; }
+  #shopify-section-{{ section.id }} .dreg__title { font-size: 2rem; }
+}
 
-  #shopify-section-{{ section.id }} .donation-ui__eyebrow,
-  #shopify-section-{{ section.id }} .section-kicker {
-    display: inline-block;
-    margin-bottom: 12px;
-    font-size: 12px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    font-weight: 800;
-    color: var(--secondary);
-  }
-
-  #shopify-section-{{ section.id }} .donation-ui__title {
-    margin: 0;
-    font-size: clamp(2.2rem, 4vw, 4.2rem);
-    line-height: .95;
-    letter-spacing: -0.04em;
-  }
-
-  #shopify-section-{{ section.id }} .donation-ui__subtitle,
-  #shopify-section-{{ section.id }} .section-text {
-    margin: 12px 0 0;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  #shopify-section-{{ section.id }} .donation-ui__hero-badge {
-    display: inline-flex;
-    padding: 10px 14px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, rgba(124,92,255,.18), rgba(34,211,238,.12));
-    border: 1px solid var(--line);
-    font-size: 12px;
-    font-weight: 800;
-    margin-bottom: 18px;
-  }
-
-  #shopify-section-{{ section.id }} .donation-ui__hero-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  #shopify-section-{{ section.id }} .metric-card {
-    padding: 18px;
-    border-radius: 18px;
-    border: 1px solid var(--line);
-    background: rgba(255,255,255,0.04);
-  }
-
-  #shopify-section-{{ section.id }} .metric-card span {
-    display: block;
-    font-size: 12px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-bottom: 8px;
-  }
-
-  #shopify-section-{{ section.id }} .metric-card strong {
-    font-size: 1.7rem;
-    letter-spacing: -0.03em;
-  }
-
-  #shopify-section-{{ section.id }} .donation-ui__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(320px, .8fr);
-    gap: 24px;
-    margin-bottom: 24px;
-  }
-
-  #shopify-section-{{ section.id }} .donation-ui__form-wrap,
-  #shopify-section-{{ section.id }} .side-card,
-  #shopify-section-{{ section.id }} .donation-ui__table-wrap {
-    padding: 28px;
-  }
-
-  #shopify-section-{{ section.id }} .donation-ui__sidebar {
-    display: grid;
-    gap: 24px;
-  }
-
-  #shopify-section-{{ section.id }} .section-head {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    align-items: flex-start;
-    margin-bottom: 22px;
-  }
-
-  #shopify-section-{{ section.id }} .section-head.simple {
-    margin-bottom: 18px;
-  }
-
-  #shopify-section-{{ section.id }} .section-head h2 {
-    margin: 0;
-    font-size: 1.2rem;
-    letter-spacing: -0.02em;
-  }
-
-  #shopify-section-{{ section.id }} .donation-form {
-    display: grid;
-    gap: 16px;
-  }
-
-  #shopify-section-{{ section.id }} .form-grid {
-    display: grid;
-    gap: 16px;
-  }
-
-  #shopify-section-{{ section.id }} .form-grid.two {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  #shopify-section-{{ section.id }} .field {
-    display: grid;
-    gap: 8px;
-  }
-
-  #shopify-section-{{ section.id }} .field span {
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  #shopify-section-{{ section.id }} .field input,
-  #shopify-section-{{ section.id }} .field select,
-  #shopify-section-{{ section.id }} .field textarea,
-  #shopify-section-{{ section.id }} .search-box {
-    width: 100%;
-    background: rgba(255,255,255,0.05);
-    color: var(--text);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 14px 16px;
-    outline: none;
-    transition: all .18s ease;
-  }
-
-  #shopify-section-{{ section.id }} .field textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-
-  #shopify-section-{{ section.id }} .field input:focus,
-  #shopify-section-{{ section.id }} .field select:focus,
-  #shopify-section-{{ section.id }} .field textarea:focus,
-  #shopify-section-{{ section.id }} .search-box:focus {
-    border-color: rgba(124, 92, 255, 0.55);
-    box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.14);
-    transform: translateY(-1px);
-  }
-
-  #shopify-section-{{ section.id }} .action-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  #shopify-section-{{ section.id }} .btn,
-  #shopify-section-{{ section.id }} .theme-toggle-btn {
-    border: 0;
-    border-radius: 16px;
-    padding: 13px 18px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: transform .18s ease, opacity .18s ease;
-  }
-
-  #shopify-section-{{ section.id }} .btn:hover,
-  #shopify-section-{{ section.id }} .theme-toggle-btn:hover {
-    transform: translateY(-2px);
-  }
-
-  #shopify-section-{{ section.id }} .btn-primary {
-    color: #fff;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-  }
-
-  #shopify-section-{{ section.id }} .btn-secondary,
-  #shopify-section-{{ section.id }} .theme-toggle-btn {
-    color: var(--text);
-    background: rgba(255,255,255,0.08);
-    border: 1px solid var(--line);
-  }
-
-  #shopify-section-{{ section.id }} .btn-danger {
-    color: #fff;
-    background: linear-gradient(135deg, #ef4444, #f43f5e);
-  }
-
-  #shopify-section-{{ section.id }} .info-note {
-    padding: 14px 16px;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    background: rgba(255,255,255,0.04);
-  }
-
-  #shopify-section-{{ section.id }} .info-note p {
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  #shopify-section-{{ section.id }} .form-message {
-    display: none;
-    padding: 14px 16px;
-    border-radius: 14px;
-    font-weight: 700;
-  }
-
-  #shopify-section-{{ section.id }} .form-message.show { display: block; }
-  #shopify-section-{{ section.id }} .form-message.success { background: rgba(34,197,94,.14); color: #4ade80; }
-  #shopify-section-{{ section.id }} .form-message.error { background: rgba(244,63,94,.14); color: #fb7185; }
-
-  #shopify-section-{{ section.id }} .amount-summary {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  #shopify-section-{{ section.id }} .amount-card {
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 16px;
-    background: rgba(255,255,255,0.04);
-  }
-
-  #shopify-section-{{ section.id }} .amount-card strong {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 1.1rem;
-  }
-
-  #shopify-section-{{ section.id }} .amount-card span {
-    color: var(--muted);
-    font-size: 13px;
-  }
-
-  #shopify-section-{{ section.id }} .tips-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 12px;
-  }
-
-  #shopify-section-{{ section.id }} .tips-list li {
-    padding: 14px 16px;
-    border-radius: 16px;
-    border: 1px solid var(--line);
-    background: rgba(255,255,255,0.04);
-    color: var(--muted);
-    line-height: 1.55;
-  }
-
-  #shopify-section-{{ section.id }} .table-head {
-    align-items: center;
-  }
-
-  #shopify-section-{{ section.id }} .search-box {
-    max-width: 320px;
-  }
-
-  #shopify-section-{{ section.id }} .table-shell {
-    overflow: auto;
-    border: 1px solid var(--line);
-    border-radius: 20px;
-  }
-
-  #shopify-section-{{ section.id }} .records-table {
-    width: 100%;
-    min-width: 1220px;
-    border-collapse: collapse;
-  }
-
-  #shopify-section-{{ section.id }} .records-table th,
-  #shopify-section-{{ section.id }} .records-table td {
-    padding: 14px 16px;
-    text-align: left;
-    border-bottom: 1px solid var(--line);
-    vertical-align: top;
-  }
-
-  #shopify-section-{{ section.id }} .records-table th {
-    font-size: 11px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: rgba(255,255,255,0.05);
-  }
-
-  #shopify-section-{{ section.id }} .status-pill {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 999px;
-    padding: 8px 12px;
-    font-size: 12px;
-    font-weight: 800;
-  }
-
-  #shopify-section-{{ section.id }} .s-transferido,
-  #shopify-section-{{ section.id }} .s-tarjeta-aprobada,
-  #shopify-section-{{ section.id }} .s-efectivo {
-    background: rgba(34,197,94,.14);
-    color: #4ade80;
-  }
-
-  #shopify-section-{{ section.id }} .s-pendiente {
-    background: rgba(245,158,11,.14);
-    color: #fbbf24;
-  }
-
-  #shopify-section-{{ section.id }} .s-rechazada,
-  #shopify-section-{{ section.id }} .s-cancelada {
-    background: rgba(244,63,94,.14);
-    color: #fb7185;
-  }
-
-  #shopify-section-{{ section.id }} .table-btn {
-    border: 1px solid var(--line);
-    background: rgba(255,255,255,0.05);
-    color: var(--text);
-    padding: 10px 12px;
-    border-radius: 12px;
-    cursor: pointer;
-  }
-
-  #shopify-section-{{ section.id }} .empty-state {
-    text-align: center;
-    color: var(--muted);
-    padding: 34px;
-  }
-
-  @media (max-width: 1100px) {
-    #shopify-section-{{ section.id }} .donation-ui__hero,
-    #shopify-section-{{ section.id }} .donation-ui__grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 768px) {
-    #shopify-section-{{ section.id }} .form-grid.two,
-    #shopify-section-{{ section.id }} .amount-summary,
-    #shopify-section-{{ section.id }} .donation-ui__hero-stats {
-      grid-template-columns: 1fr;
-    }
-
-    #shopify-section-{{ section.id }} .section-head,
-    #shopify-section-{{ section.id }} .table-head {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    #shopify-section-{{ section.id }} .search-box {
-      max-width: 100%;
-    }
-
-    #shopify-section-{{ section.id }} .donation-ui__title {
-      font-size: 2.2rem;
-    }
-  }
+@media (max-width: 480px) {
+  #shopify-section-{{ section.id }} .dreg__kpis { grid-template-columns: 1fr 1fr; }
+  #shopify-section-{{ section.id }} .dreg__amounts { grid-template-columns: 1fr; }
+}
 </style>
 
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
 <script>
 (() => {
-  const section = document.getElementById('donaciones-registro-{{ section.id }}');
-  if (!section || section.dataset.initialized === 'true') return;
-  section.dataset.initialized = 'true';
+  const ROOT = document.getElementById('donaciones-registro-{{ section.id }}');
+  if (!ROOT || ROOT.dataset.initialized === 'true') return;
+  ROOT.dataset.initialized = 'true';
 
-  const APPS_SCRIPT_URL = {{ section.settings.apps_script_url | json }};
-  const STORAGE_KEY = 'registroDonacionesShopify_{{ section.id }}';
+  /* ── CONFIG ── */
+  const APPS_URL    = {{ section.settings.apps_script_url | json }};
+  const STORAGE_KEY = 'dreg_{{ section.id }}';
 
-  const state = {
-    records: [],
-    filteredRecords: []
+  /* ── STATE ── */
+  const state = { records: [], filtered: [] };
+
+  /* ── ELEMENTS ── */
+  const q  = sel => ROOT.querySelector(sel);
+  const el = {
+    form:          q('[data-donation-form]'),
+    fecha:         q('[data-fecha]'),
+    hora:          q('[data-hora]'),
+    nombre:        q('[data-nombre]'),
+    telefono:      q('[data-telefono]'),
+    monto:         q('[data-monto]'),
+    tarjeta:       q('[data-tarjeta]'),
+    estatus:       q('[data-estatus]'),
+    metodoPago:    q('[data-metodo-pago]'),
+    notas:         q('[data-notas]'),
+    capturadoPor:  q('[data-capturado-por]'),
+    kpiRegistros:  q('[data-total-registros]'),
+    kpiTotal:      q('[data-monto-total]'),
+    kpiPromedio:   q('[data-promedio-monto]'),
+    kpiUltimo:     q('[data-ultimo-hora]'),
+    amountSummary: q('[data-amount-summary]'),
+    tablaBody:     q('[data-tabla-body]'),
+    mensaje:       q('[data-mensaje]'),
+    btnExportar:   q('[data-exportar]'),
+    btnLimpiar:    q('[data-limpiar]'),
+    buscar:        q('[data-buscar]'),
+    themeToggle:   q('[data-theme-toggle]'),
+    submitBtn:     q('[data-submit-btn]')
   };
 
-  const els = {
-    form: section.querySelector('[data-donation-form]'),
-    fecha: section.querySelector('[data-fecha]'),
-    hora: section.querySelector('[data-hora]'),
-    nombre: section.querySelector('[data-nombre]'),
-    telefono: section.querySelector('[data-telefono]'),
-    monto: section.querySelector('[data-monto]'),
-    tarjeta: section.querySelector('[data-tarjeta]'),
-    estatus: section.querySelector('[data-estatus]'),
-    metodoPago: section.querySelector('[data-metodo-pago]'),
-    notas: section.querySelector('[data-notas]'),
-    capturadoPor: section.querySelector('[data-capturado-por]'),
-    totalRegistros: section.querySelector('[data-total-registros]'),
-    montoTotal: section.querySelector('[data-monto-total]'),
-    promedioMonto: section.querySelector('[data-promedio-monto]'),
-    ultimoHora: section.querySelector('[data-ultimo-hora]'),
-    amountSummary: section.querySelector('[data-amount-summary]'),
-    tablaBody: section.querySelector('[data-tabla-body]'),
-    mensaje: section.querySelector('[data-mensaje]'),
-    btnExportar: section.querySelector('[data-exportar]'),
-    btnLimpiar: section.querySelector('[data-limpiar]'),
-    buscar: section.querySelector('[data-buscar]'),
-    themeToggle: section.querySelector('[data-theme-toggle]')
-  };
-
+  /* ══════════════════════════════════════════
+     INIT
+  ══════════════════════════════════════════ */
   function init() {
     initTheme();
     initHours();
     loadRecords();
-    setDefaultFormValues();
-    attachEvents();
-    applyFilter();
+    setDefaults();
+    bindEvents();
+    refresh();
   }
 
+  /* ── THEME ── */
   function initTheme() {
-    const saved = localStorage.getItem('donation-ui-theme');
-    if (saved === 'light') section.classList.add('theme-light');
-    updateThemeButton();
+    if (localStorage.getItem('dreg-theme') === 'light') ROOT.classList.add('theme-light');
+    syncThemeBtn();
   }
-
-  function updateThemeButton() {
-    els.themeToggle.textContent = section.classList.contains('theme-light') ? 'Modo oscuro' : 'Modo claro';
+  function syncThemeBtn() {
+    const span = el.themeToggle.querySelector('span');
+    if (span) span.textContent = ROOT.classList.contains('theme-light') ? 'Modo oscuro' : 'Modo claro';
   }
-
   function toggleTheme() {
-    section.classList.toggle('theme-light');
-    localStorage.setItem('donation-ui-theme', section.classList.contains('theme-light') ? 'light' : 'dark');
-    updateThemeButton();
+    ROOT.classList.toggle('theme-light');
+    localStorage.setItem('dreg-theme', ROOT.classList.contains('theme-light') ? 'light' : 'dark');
+    syncThemeBtn();
   }
 
+  /* ── HOURS ── */
   function initHours() {
-    els.hora.innerHTML = '<option value="">Selecciona</option>';
+    el.hora.innerHTML = '<option value="">Selecciona…</option>';
     for (let h = 7; h <= 18; h++) {
-      const value = String(h).padStart(2, '0') + ':00';
-      const label = new Date(2025, 0, 1, h, 0).toLocaleTimeString('es-MX', {
-        hour: 'numeric',
-        minute: '2-digit'
-      });
-      const option = document.createElement('option');
-      option.value = value;
-      option.textContent = label;
-      els.hora.appendChild(option);
+      const val = String(h).padStart(2, '0') + ':00';
+      const lbl = new Date(2000, 0, 1, h).toLocaleTimeString('es-MX', { hour: 'numeric', minute: '2-digit' });
+      const opt = document.createElement('option');
+      opt.value = val; opt.textContent = lbl;
+      el.hora.appendChild(opt);
     }
   }
 
-  function attachEvents() {
-    els.form.addEventListener('submit', handleSubmit);
-    els.btnExportar.addEventListener('click', exportCsv);
-    els.btnLimpiar.addEventListener('click', clearLocalBackup);
-    els.buscar.addEventListener('input', applyFilter);
-    els.themeToggle.addEventListener('click', toggleTheme);
-    els.tarjeta.addEventListener('input', () => {
-      els.tarjeta.value = els.tarjeta.value.replace(/\D/g, '').slice(0, 16);
+  function setDefaults() {
+    el.fecha.value = new Date().toISOString().split('T')[0];
+  }
+
+  /* ── EVENTS ── */
+  function bindEvents() {
+    el.form.addEventListener('submit', handleSubmit);
+    el.btnExportar.addEventListener('click', exportCSV);
+    el.btnLimpiar.addEventListener('click', clearBackup);
+    el.buscar.addEventListener('input', refresh);
+    el.themeToggle.addEventListener('click', toggleTheme);
+
+    /* Formatear tarjeta con espacios visuales */
+    el.tarjeta.addEventListener('input', () => {
+      const raw = el.tarjeta.value.replace(/\D/g, '').slice(0, 16);
+      el.tarjeta.dataset.rawValue = raw;
+      el.tarjeta.value = raw.replace(/(.{4})/g, '$1 ').trim();
     });
   }
 
-  function setDefaultFormValues() {
-    els.fecha.value = new Date().toISOString().split('T')[0];
-    els.monto.value = '100';
-  }
-
-  function validateCardNumber(value) {
-    const digits = String(value || '').replace(/\D/g, '');
-    return /^\d{16}$/.test(digits) ? digits : '';
-  }
-
-  function buildPayload() {
-    return {
-      fecha: els.fecha.value,
-      hora: els.hora.value,
-      nombre: els.nombre.value.trim(),
-      telefono: els.telefono.value.trim(),
-      monto: Number(els.monto.value),
-      tarjeta: validateCardNumber(els.tarjeta.value),
-      estatus: els.estatus.value,
-      metodoPago: els.metodoPago.value,
-      notas: els.notas.value.trim(),
-      capturadoPor: els.capturadoPor.value.trim()
-    };
-  }
-
-  function validatePayload(data) {
-    if (!APPS_SCRIPT_URL) return 'Falta configurar la URL de Apps Script.';
-    if (!data.fecha || !data.hora || !data.nombre || !data.telefono || !data.estatus || !data.metodoPago) {
-      return 'Completa todos los campos obligatorios.';
-    }
-    if (!Number.isFinite(data.monto) || data.monto < 100) return 'El monto debe ser mayor o igual a 100.';
-    if (!data.tarjeta) return 'La tarjeta debe tener exactamente 16 dígitos.';
-    const hour = Number(data.hora.split(':')[0]);
-    if (hour < 7 || hour > 18) return 'La hora debe estar entre 7:00 AM y 6:00 PM.';
-    return '';
-  }
-
+  /* ══════════════════════════════════════════
+     SUBMIT — CORREGIDO PARA GOOGLE APPS SCRIPT
+  ══════════════════════════════════════════ */
   async function handleSubmit(e) {
     e.preventDefault();
     const payload = buildPayload();
-    const error = validatePayload(payload);
+    const err = validate(payload);
+    if (err) { showMsg(err, 'error'); return; }
 
-    if (error) {
-      showMessage(error, 'error');
+    if (!APPS_URL) {
+      showMsg('Falta configurar la URL de Apps Script en los ajustes de la sección.', 'error');
       return;
     }
 
+    /* Estado de carga */
+    el.submitBtn.disabled = true;
+    el.submitBtn.textContent = 'Enviando…';
+    showMsg('Enviando a Google Sheets…', 'loading');
+
     try {
-      const response = await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
+      /*
+       * Apps Script requiere:
+       *   - método POST
+       *   - redirect: 'follow'   (Apps Script redirige con 302)
+       *   - Content-Type: 'text/plain'  (no dispara preflight CORS)
+       *   - body: JSON string
+       */
+      const res = await fetch(APPS_URL, {
+        method:   'POST',
         redirect: 'follow',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
+        headers:  { 'Content-Type': 'text/plain;charset=utf-8' },
+        body:     JSON.stringify(payload)
       });
 
-      const result = await response.json();
-
-      if (!result.ok) {
-        showMessage(result.message || 'No se pudo guardar en Google Sheets.', 'error');
-        return;
+      let result;
+      try {
+        result = await res.json();
+      } catch (_) {
+        /* Apps Script a veces devuelve texto plano si hay error */
+        const text = await res.text().catch(() => '');
+        throw new Error('Respuesta inesperada del servidor: ' + text.slice(0, 120));
       }
 
-      const record = { ...payload, id: result.id };
-      state.records.unshift(record);
-      persistRecords();
-      els.form.reset();
-      setDefaultFormValues();
-      applyFilter();
-      showMessage('Registro guardado correctamente.', 'success');
+      if (result && result.ok === false) {
+        throw new Error(result.message || 'El servidor rechazó el registro.');
+      }
+
+      /* Éxito */
+      const saved = { ...payload, id: (result && result.id) ? result.id : ('loc_' + Date.now()) };
+      state.records.unshift(saved);
+      persist();
+      el.form.reset();
+      setDefaults();
+      refresh();
+      showMsg('✓ Registro guardado en Google Sheets.', 'success');
+
     } catch (err) {
-      showMessage('No se pudo conectar con Google Sheets. Revisa el Apps Script.', 'error');
+      console.error('[DREG] Error al enviar:', err);
+      showMsg('Error: ' + (err.message || 'No se pudo conectar con Google Sheets. Verifica la URL del Apps Script y que esté publicado correctamente.'), 'error');
+    } finally {
+      el.submitBtn.disabled = false;
+      el.submitBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg> Guardar registro`;
     }
   }
 
-  function persistRecords() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.records));
+  /* ── PAYLOAD ── */
+  function buildPayload() {
+    const rawCard = (el.tarjeta.dataset.rawValue || el.tarjeta.value.replace(/\D/g, '')).slice(0, 16);
+    return {
+      fecha:       el.fecha.value,
+      hora:        el.hora.value,
+      nombre:      el.nombre.value.trim(),
+      telefono:    el.telefono.value.trim(),
+      monto:       parseFloat(el.monto.value) || 0,
+      tarjeta:     rawCard,
+      estatus:     el.estatus.value,
+      metodoPago:  el.metodoPago.value,
+      notas:       el.notas.value.trim(),
+      capturadoPor: el.capturadoPor.value.trim()
+    };
   }
 
+  function validate(d) {
+    if (!d.fecha)      return 'Selecciona una fecha.';
+    if (!d.hora)       return 'Selecciona una hora.';
+    if (!d.nombre)     return 'El nombre es obligatorio.';
+    if (!d.telefono)   return 'El teléfono es obligatorio.';
+    if (!d.estatus)    return 'Selecciona un estatus.';
+    if (!d.metodoPago) return 'Selecciona un método de pago.';
+    if (!Number.isFinite(d.monto) || d.monto < 100) return 'El monto mínimo es $100.';
+    if (!/^\d{16}$/.test(d.tarjeta)) return 'La tarjeta debe tener exactamente 16 dígitos.';
+    const h = Number(d.hora.split(':')[0]);
+    if (h < 7 || h > 18) return 'La hora debe estar entre 7:00 AM y 6:00 PM.';
+    return '';
+  }
+
+  /* ── PERSIST ── */
+  function persist() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.records)); } catch(_) {}
+  }
   function loadRecords() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) state.records = parsed;
-    } catch (e) {
-      state.records = [];
-    }
+      if (raw) { const p = JSON.parse(raw); if (Array.isArray(p)) state.records = p; }
+    } catch(_) { state.records = []; }
   }
-
-  function clearLocalBackup() {
-    if (!state.records.length) {
-      showMessage('No hay respaldo local para borrar.', 'error');
-      return;
-    }
-
-    const ok = confirm('¿Seguro que quieres borrar el respaldo local?');
-    if (!ok) return;
-
+  function clearBackup() {
+    if (!state.records.length) { showMsg('No hay respaldo local.', 'error'); return; }
+    if (!confirm('¿Borrar todo el respaldo local?')) return;
     state.records = [];
     localStorage.removeItem(STORAGE_KEY);
-    applyFilter();
-    showMessage('Respaldo local borrado correctamente.', 'success');
+    refresh();
+    showMsg('Respaldo borrado.', 'success');
   }
 
-  function applyFilter() {
-    const term = els.buscar.value.trim().toLowerCase();
-    state.filteredRecords = state.records.filter(record => {
-      if (!term) return true;
-      return [
-        record.id,
-        record.fecha,
-        record.hora,
-        record.nombre,
-        record.telefono,
-        record.monto,
-        record.tarjeta,
-        record.estatus,
-        record.metodoPago,
-        record.capturadoPor,
-        record.notas
-      ].join(' ').toLowerCase().includes(term);
-    });
-
-    renderStats();
-    renderAmountSummary();
+  /* ── FILTER ── */
+  function refresh() {
+    const term = (el.buscar.value || '').trim().toLowerCase();
+    state.filtered = term
+      ? state.records.filter(r => Object.values(r).join(' ').toLowerCase().includes(term))
+      : [...state.records];
+    renderKPIs();
+    renderAmounts();
     renderTable();
   }
 
-  function renderStats() {
-    const total = state.records.reduce((sum, record) => sum + Number(record.monto || 0), 0);
-    els.totalRegistros.textContent = state.records.length;
-    els.montoTotal.textContent = formatCurrency(total);
-    els.promedioMonto.textContent = formatCurrency(state.records.length ? total / state.records.length : 0);
-    els.ultimoHora.textContent = state.records.length ? formatHour(state.records[0].hora) : '—';
+  /* ── RENDER KPIs ── */
+  function renderKPIs() {
+    const total = state.records.reduce((s, r) => s + Number(r.monto || 0), 0);
+    el.kpiRegistros.textContent = state.records.length;
+    el.kpiTotal.textContent     = fmt(total);
+    el.kpiPromedio.textContent  = fmt(state.records.length ? total / state.records.length : 0);
+    el.kpiUltimo.textContent    = state.records.length ? fmtHour(state.records[0].hora) : '—';
   }
 
-  function renderAmountSummary() {
-    const counts = {};
-    state.records.forEach(record => {
-      const key = Number(record.monto).toFixed(2);
-      counts[key] = (counts[key] || 0) + 1;
+  /* ── RENDER AMOUNTS ── */
+  function renderAmounts() {
+    const map = {};
+    state.records.forEach(r => {
+      const k = Number(r.monto).toFixed(2);
+      map[k] = (map[k] || 0) + 1;
     });
-
-    const keys = Object.keys(counts).sort((a, b) => Number(a) - Number(b));
-
+    const keys = Object.keys(map).sort((a, b) => b - a);
     if (!keys.length) {
-      els.amountSummary.innerHTML = '<div class="amount-card"><strong>Sin datos</strong><span>Los montos aparecerán aquí.</span></div>';
+      el.amountSummary.innerHTML = '<p class="dreg__empty-inline">Sin registros aún.</p>';
       return;
     }
-
-    els.amountSummary.innerHTML = keys.map(key => `
-      <div class="amount-card">
-        <strong>${formatCurrency(Number(key))}</strong>
-        <span>${counts[key]} registro${counts[key] === 1 ? '' : 's'}</span>
-      </div>
-    `).join('');
+    el.amountSummary.innerHTML = keys.map(k => `
+      <div class="dreg__amount-card">
+        <strong>${fmt(Number(k))}</strong>
+        <span>${map[k]} registro${map[k] === 1 ? '' : 's'}</span>
+      </div>`).join('');
   }
 
+  /* ── RENDER TABLE ── */
   function renderTable() {
-    if (!state.filteredRecords.length) {
-      els.tablaBody.innerHTML = '<tr><td colspan="12" class="empty-state">No hay registros que coincidan con tu búsqueda.</td></tr>';
+    if (!state.filtered.length) {
+      el.tablaBody.innerHTML = `<tr><td colspan="12" class="dreg__empty">${state.records.length ? 'Sin resultados para esa búsqueda.' : 'Sin registros todavía.'}</td></tr>`;
       return;
     }
-
-    els.tablaBody.innerHTML = state.filteredRecords.map((record, index) => `
+    el.tablaBody.innerHTML = state.filtered.map((r, i) => `
       <tr>
-        <td>${escapeHtml(record.id || '')}</td>
-        <td>${escapeHtml(record.fecha)}</td>
-        <td>${formatHour(record.hora)}</td>
-        <td>${escapeHtml(record.nombre)}</td>
-        <td>${escapeHtml(record.telefono)}</td>
-        <td>${formatCurrency(Number(record.monto))}</td>
-        <td>${escapeHtml(record.tarjeta)}</td>
-        <td><span class="status-pill ${statusClass(record.estatus)}">${escapeHtml(record.estatus)}</span></td>
-        <td>${escapeHtml(record.metodoPago)}</td>
-        <td>${escapeHtml(record.capturadoPor || '')}</td>
-        <td>${escapeHtml(record.notas || '')}</td>
-        <td><button class="table-btn" type="button" data-remove="${escapeHtml(record.id || String(index))}">Eliminar</button></td>
-      </tr>
-    `).join('');
+        <td>${esc(r.id || '')}</td>
+        <td>${esc(r.fecha)}</td>
+        <td>${fmtHour(r.hora)}</td>
+        <td>${esc(r.nombre)}</td>
+        <td>${esc(r.telefono)}</td>
+        <td><strong>${fmt(Number(r.monto))}</strong></td>
+        <td style="font-family:monospace;letter-spacing:.05em">${esc(r.tarjeta)}</td>
+        <td><span class="s-pill ${statusClass(r.estatus)}">${esc(r.estatus)}</span></td>
+        <td>${esc(r.metodoPago)}</td>
+        <td>${esc(r.capturadoPor || '—')}</td>
+        <td style="max-width:160px;white-space:normal">${esc(r.notas || '')}</td>
+        <td><button class="dreg__del-btn" data-remove="${esc(r.id || String(i))}">Eliminar</button></td>
+      </tr>`).join('');
 
-    els.tablaBody.querySelectorAll('[data-remove]').forEach(btn => {
-      btn.addEventListener('click', () => removeRecord(btn.getAttribute('data-remove')));
-    });
+    el.tablaBody.querySelectorAll('[data-remove]').forEach(btn =>
+      btn.addEventListener('click', () => removeRecord(btn.dataset.remove)));
   }
 
   function removeRecord(id) {
-    const ok = confirm('¿Seguro que quieres eliminar este registro del respaldo local?');
-    if (!ok) return;
-    state.records = state.records.filter(record => String(record.id) !== String(id));
-    persistRecords();
-    applyFilter();
-    showMessage('Registro eliminado.', 'success');
+    if (!confirm('¿Eliminar este registro del respaldo local?')) return;
+    state.records = state.records.filter(r => String(r.id) !== String(id));
+    persist(); refresh();
+    showMsg('Registro eliminado.', 'success');
   }
 
-  function exportCsv() {
-    if (!state.records.length) {
-      showMessage('No hay registros para exportar.', 'error');
-      return;
-    }
-
-    const rows = [
-      ['ID', 'Fecha', 'Hora', 'Nombre', 'Telefono', 'Monto', 'NumeroTarjeta', 'Estatus', 'MetodoPago', 'Notas', 'CapturadoPor'],
-      ...state.records.map(record => [
-        record.id || '',
-        record.fecha,
-        formatHour(record.hora),
-        record.nombre,
-        record.telefono,
-        record.monto,
-        record.tarjeta,
-        record.estatus,
-        record.metodoPago,
-        record.notas || '',
-        record.capturadoPor || ''
-      ])
-    ];
-
-    const csv = rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'registro-donaciones.csv';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+  /* ── EXPORT CSV ── */
+  function exportCSV() {
+    if (!state.records.length) { showMsg('No hay registros para exportar.', 'error'); return; }
+    const cols = ['ID','Fecha','Hora','Nombre','Telefono','Monto','Tarjeta','Estatus','MetodoPago','Notas','CapturadoPor'];
+    const rows = [cols, ...state.records.map(r => [
+      r.id||'', r.fecha, fmtHour(r.hora), r.nombre, r.telefono,
+      r.monto, r.tarjeta, r.estatus, r.metodoPago, r.notas||'', r.capturadoPor||''
+    ])];
+    const csv  = rows.map(row => row.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url  = URL.createObjectURL(blob);
+    const a    = Object.assign(document.createElement('a'), { href: url, download: 'donaciones.csv' });
+    document.body.appendChild(a); a.click(); a.remove();
     URL.revokeObjectURL(url);
-    showMessage('CSV exportado correctamente.', 'success');
+    showMsg('CSV exportado correctamente.', 'success');
   }
 
-  function showMessage(text, type) {
-    els.mensaje.textContent = text;
-    els.mensaje.className = `form-message show ${type}`;
-    clearTimeout(showMessage.timer);
-    showMessage.timer = setTimeout(() => {
-      els.mensaje.className = 'form-message';
-    }, 3500);
+  /* ── HELPERS ── */
+  function showMsg(text, type) {
+    el.mensaje.textContent = text;
+    el.mensaje.className   = `dreg__msg show ${type}`;
+    clearTimeout(showMsg._t);
+    if (type !== 'loading') showMsg._t = setTimeout(() => { el.mensaje.className = 'dreg__msg'; }, 4000);
   }
 
-  function formatCurrency(value) {
-    return new Intl.NumberFormat('es-MX', {
-      style: 'currency',
-      currency: 'MXN'
-    }).format(value || 0);
+  function fmt(val) {
+    return new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(val || 0);
   }
 
-  function formatHour(value) {
-    if (!value) return '—';
-    const [h, m] = String(value).split(':').map(Number);
-    const d = new Date();
-    d.setHours(h, m, 0, 0);
+  function fmtHour(v) {
+    if (!v) return '—';
+    const [h, m] = String(v).split(':').map(Number);
+    const d = new Date(); d.setHours(h, m||0, 0, 0);
     return d.toLocaleTimeString('es-MX', { hour: 'numeric', minute: '2-digit' });
   }
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, c => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    }[c]));
+  function esc(s) {
+    return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
-  function statusClass(status) {
-    return 's-' + String(status || '').toLowerCase().replace(/\s+/g, '-');
+  function statusClass(s) {
+    return 's-' + String(s || '').toLowerCase().replace(/\s+/g, '-');
   }
 
   init();
@@ -1015,7 +1166,7 @@
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Texto superior",
+      "label": "Texto de badge",
       "default": "Sistema conectado a Google Sheets"
     },
     {
@@ -1034,7 +1185,8 @@
       "type": "text",
       "id": "apps_script_url",
       "label": "URL de Apps Script",
-      "default": "https://script.google.com/macros/s/AKfycbwFSwe_MHBJudplfglxooUTRlF0QdHdw9Eu9o9obrD8coKBP_9jas4xKKGSLTUfjO44/exec"
+      "info": "Pega aquí la URL de tu Google Apps Script publicado como aplicación web.",
+      "default": ""
     },
     {
       "type": "color",
@@ -1045,34 +1197,22 @@
     {
       "type": "color",
       "id": "secondary_color",
-      "label": "Color secundario",
+      "label": "Color secundario / acento",
       "default": "#22d3ee"
     },
     {
       "type": "range",
       "id": "padding_top",
-      "label": "Espacio arriba",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "default": 36
+      "label": "Espacio arriba (px)",
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40
     },
     {
       "type": "range",
       "id": "padding_bottom",
-      "label": "Espacio abajo",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "default": 36
+      "label": "Espacio abajo (px)",
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40
     }
   ],
-  "presets": [
-    {
-      "name": "Registro donaciones"
-    }
-  ]
+  "presets": [{ "name": "Registro donaciones" }]
 }
 {% endschema %}
