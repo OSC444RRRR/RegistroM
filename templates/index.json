@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "donaciones-registro",
+      "settings": {
+        "eyebrow": "Sistema conectado a Google Sheets",
+        "heading": "Registro de Donaciones",
+        "subheading": "Captura donaciones, guarda respaldo local y envía cada registro a tu hoja automáticamente.",
+        "apps_script_url": "https://script.google.com/macros/s/AKfycbwFSwe_MHBJudplfglxooUTRlF0QdHdw9Eu9o9obrD8coKBP_9jas4xKKGSLTUfjO44/exec",
+        "primary_color": "#7c5cff",
+        "secondary_color": "#22d3ee",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
